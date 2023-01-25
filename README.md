@@ -29,6 +29,21 @@ The `kafkesc/ksunami` docker image version will match [Ksunami]
 Following Docker approach, `kafkesc/ksunami:latest` will be a moving tag, pointing at the latest release.
 All other versions (current and previous) will be available as `kafkesc/ksunami:vX.Y.Z`.
 
+### Release process
+
+Once a new [Ksunami] [version](https://crates.io/crates/ksunami/versions) is released to [crates.io],
+the only thing to do should be to create a commit (even empty) against this repository,
+with tag equivalent to the one used to [release Ksunami](https://github.com/kafkesc/ksunami/releases).
+
+For example, if `ksunami@v1.2.3` has just been released:
+
+```shell
+$ NEW_TAG=v1.2.3
+$ git commit --allow-empty --message "Cutting release ${NEW_TAG}"
+$ git tag ${NEW_TAG}
+$ git push --tags
+```
+
 ## License
 
 Licensed under either of
@@ -48,3 +63,4 @@ dual licensed as above, without any additional terms or conditions.
 
 [Ksunami]: https://github.com/kafkesc/ksunami
 [Docker]: https://www.docker.com/
+[crates.io]: https://crates.io/crates/ksunami
