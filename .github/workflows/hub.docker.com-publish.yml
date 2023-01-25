@@ -8,7 +8,10 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_PLATFORMS: "linux/amd64,linux/arm64"
+  PLATFORMS: "linux/amd64,linux/arm64"
+  DOCKERHUB_ORG: "kafkesc"
+  DOCKERHUB_IMG_NAME: "ksunami"
+  VERSION: ${{ github.ref_name }}
 
 jobs:
   publish:
@@ -21,20 +24,23 @@ jobs:
       - name: Check-out
         uses: actions/checkout@v3
 
-      - name: Set-up Docker Buildx
+      - name: Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set-up Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
         with:
-          platforms: ${{ env.TARGET_PLATFORMS }}
+          platforms: ${{ env.PLATFORMS }}
 
-      - name: Set-up config
+      - name: Build & Push
         run: |
-          echo "Name: ${{ steps.buildx.outputs.name }}"
-          echo "Driver: ${{ steps.buildx.outputs.driver }}"
-          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
-          echo "Metadata: ${{ steps.buildx.outputs.nodes }}"
-          docker buildx --help
-
-      - name: Build
-        run: |
-          docker buildx build --platform ${{ env.TARGET_PLATFORMS }} .
+          docker buildx build \
+            --tag ${{ env.DOCKERHUB_ORG }}/${{ DOCKERHUB_IMG_NAME }}:latest \
+            --tag ${{ env.DOCKERHUB_ORG }}/${{ DOCKERHUB_IMG_NAME }}:v${{ env.VERSION }} \
+            --build-arg KSUNAMI_VERSION=${{ env.VERSION }} \
+            --platform ${{ env.PLATFORMS }} \ 
+            .
