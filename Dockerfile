@@ -22,7 +22,7 @@ RUN \
 	apt update && \
 	apt install -y ${BUILD_DEPS} && \
     # Build
-	cargo install --version "${KSUNAMI_VERSION}" ksunami && \
+	cargo install --version "${KSUNAMI_VERSION#v}" ksunami && \
     # Cleanup
     rm -rf /usr/local/cargo/registry && \
     apt remove --purge -y ${BUILD_DEPS} && \
