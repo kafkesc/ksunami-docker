@@ -11,7 +11,7 @@ env:
   PLATFORMS: "linux/amd64,linux/arm64"
   DOCKERHUB_ORG: "kafkesc"
   DOCKERHUB_IMG_NAME: "ksunami"
-  VERSION: ${{ github.ref_name }}
+  RELEASE_VERSION: ${{ github.ref_name }}
 
 jobs:
   publish:
@@ -39,8 +39,9 @@ jobs:
       - name: Build & Push
         run: |
           docker buildx build \
-            --tag ${{ env.DOCKERHUB_ORG }}/${{ DOCKERHUB_IMG_NAME }}:latest \
-            --tag ${{ env.DOCKERHUB_ORG }}/${{ DOCKERHUB_IMG_NAME }}:v${{ env.VERSION }} \
-            --build-arg KSUNAMI_VERSION=${{ env.VERSION }} \
+            --tag ${{ env.DOCKERHUB_ORG }}/${{ env.DOCKERHUB_IMG_NAME }}:latest \
+            --tag ${{ env.DOCKERHUB_ORG }}/${{ env.DOCKERHUB_IMG_NAME }}:v${{ env.RELEASE_VERSION }} \
+            --tag ${{ env.DOCKERHUB_ORG }}/${{ env.DOCKERHUB_IMG_NAME }}:${{ env.RELEASE_VERSION }} \
+            --build-arg KSUNAMI_VERSION=${{ env.RELEASE_VERSION }} \
             --platform ${{ env.PLATFORMS }} \ 
             .
