@@ -35,13 +35,10 @@ Once a new [Ksunami] [version](https://crates.io/crates/ksunami/versions) is rel
 the only thing to do should be to create a commit (even empty) against this repository,
 with tag equivalent to the one used to [release Ksunami](https://github.com/kafkesc/ksunami/releases).
 
-For example, if `ksunami@v1.2.3` has just been released:
+For example, if `ksunami@v1.2.3` has just been released, just do:
 
 ```shell
-$ NEW_TAG=v1.2.3
-$ git commit --allow-empty --message "Cutting release ${NEW_TAG}"
-$ git tag ${NEW_TAG}
-$ git push --tags
+$ make release tag=v1.2.3
 ```
 
 ## License
