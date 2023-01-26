@@ -1,8 +1,11 @@
 # ksunami-docker
 
-A Docker wrapper for [Ksunami].
+A Docker wrapper for [Ksunami]. 
+Grub the image from [Docker Hub `kafkesc/ksunami`](https://hub.docker.com/r/kafkesc/ksunami)
 
-Image name: [`kafkesc/ksunami`](https://hub.docker.com/r/kafkesc/ksunami).
+```shell
+$ docker pull kafkesc/ksunami
+```
 
 ## Usage
 
