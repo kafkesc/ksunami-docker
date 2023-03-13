@@ -9,6 +9,7 @@ env:
   DOCKERHUB_ORG: kafkesc
   DOCKERHUB_IMG_NAME: ksunami
   RELEASE_VERSION: ${{ github.ref_name }}
+  CARGO_NET_GIT_FETCH_WITH_CLI: true
 
 jobs:
   publish:
