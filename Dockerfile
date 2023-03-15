@@ -15,15 +15,19 @@ LABEL base.image=$BASE_IMG:$BASE_IMG_VERSION \
     license="MIT OR Apache-2.0"
 
 ENV BUILD_DEPS "tcl-dev libssl-dev libsasl2-dev"
+ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL "sparse"
 
-
+# Setup
 RUN \
-    # Setup
 	apt update && \
-	apt install -y ${BUILD_DEPS} && \
-    # Build
-	cargo install --version "${KSUNAMI_VERSION#v}" ksunami && \
-    # Cleanup
+	apt install -y ${BUILD_DEPS}
+
+# Build
+RUN \
+	cargo install --version "${KSUNAMI_VERSION#v}" ksunami
+
+# Cleanup
+RUN \
     rm -rf /usr/local/cargo/registry && \
     apt remove --purge -y ${BUILD_DEPS} && \
 	apt autoremove -y && \
