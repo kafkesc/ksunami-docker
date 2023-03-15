@@ -1,4 +1,11 @@
-# ksunami-docker
+# ksunami-docker [![Docker_s]][Docker_l] [![Docker_s_size]][Docker_l] [![GitHub_s]][GitHub_l] ![Lic_s]
+
+[Docker_s]: https://img.shields.io/docker/v/kafkesc/ksunami/latest?logo=Docker&style=flat-square&label=D
+[Docker_l]: https://hub.docker.com/r/kafkesc/ksunami
+[Docker_s_size]: https://img.shields.io/docker/image-size/kafkesc/ksunami/latest?logo=Docker&style=flat-square&label=D
+[GitHub_s]: https://img.shields.io/badge/S-GitHub-green?link=http://Github.com&link=http://youtube.com&logo=Github
+[GitHub_l]: https://github.com/kafkesc/ksunami-docker
+[Lic_s]: https://img.shields.io/badge/License-Apache_2.0_or_MIT-blue.svg?style=flat-square&label=L
 
 A Docker wrapper for [Ksunami]. 
 Grub the image from [Docker Hub `kafkesc/ksunami`](https://hub.docker.com/r/kafkesc/ksunami)
