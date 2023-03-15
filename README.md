@@ -41,7 +41,7 @@ with tag equivalent to the one used to [release Ksunami](https://github.com/kafk
 For example, if `ksunami@v1.2.3` has just been released, just do:
 
 ```shell
-$ make release tag=v1.2.3
+$ make push-git-release-tag tag=v1.2.3
 ```
 
 ## License
